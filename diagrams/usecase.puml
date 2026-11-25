@@ -1,0 +1,84 @@
+@startuml VeloSf_Cas_d_utilisation
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam usecase {
+  BackgroundColor #EAF2FB
+  BorderColor #1F4E79
+}
+skinparam actor {
+  BorderColor #1F4E79
+}
+left to right direction
+
+actor "Responsable" as RESP
+actor "Fournisseur" as FOUR
+actor "Abonné" as ABO
+actor "Utilisateur\noccasionnel" as OCC
+actor "Technicien" as TECH
+
+rectangle "VéloSf (CycloSfaxcity)" {
+
+  package "Gestion de la flotte" {
+    usecase "CU1 Gérer les stations" as CU1
+    usecase "CU2 Acheter un vélo" as CU2
+    usecase "CU3 Gérer les fournisseurs" as CU3
+    usecase "CU4 Planifier une réparation" as CU4
+    usecase "CU8 Contrôler les vélos et\nenregistrer une réclamation" as CU8
+  }
+
+  package "Location" {
+    usecase "CU5 Louer un vélo (abonné)" as CU5
+    usecase "CU6 Louer un vélo (occasionnel)" as CU6
+    usecase "CU7 Restituer un vélo" as CU7
+  }
+
+  package "Redistribution et itinéraires" {
+    usecase "CU10 Préparer un itinéraire" as CU10
+    usecase "CU11 Donner un ordre de mission" as CU11
+    usecase "CU9 Répartir les vélos\nentre les stations" as CU9
+  }
+
+  usecase "CU12 S'authentifier (ajouté)" as CU12
+}
+
+' ---------- Responsable ----------
+RESP --> CU1
+RESP --> CU2
+RESP --> CU3
+RESP --> CU4
+RESP --> CU10
+RESP --> CU11
+
+' ---------- Fournisseur (acteur du cas d'étude) ----------
+FOUR --> CU2
+FOUR --> CU3
+
+' ---------- Abonné ----------
+ABO --> CU5
+ABO --> CU7
+
+' ---------- Utilisateur occasionnel (sans compte) ----------
+OCC --> CU6
+OCC --> CU7
+
+' ---------- Technicien ----------
+TECH --> CU8
+TECH --> CU9
+
+' ---------- Authentification : exigée par CU1 à CU5 et CU8 à CU11 ----------
+CU1 ..> CU12 : <<include>>
+CU2 ..> CU12 : <<include>>
+CU3 ..> CU12 : <<include>>
+CU4 ..> CU12 : <<include>>
+CU5 ..> CU12 : <<include>>
+CU8 ..> CU12 : <<include>>
+CU9 ..> CU12 : <<include>>
+CU10 ..> CU12 : <<include>>
+CU11 ..> CU12 : <<include>>
+
+note bottom of CU12
+  Hypothèse H4 : le Responsable, l'Abonné et le Technicien
+  se connectent (identifiant ou carte + code secret).
+  L'utilisateur occasionnel et le Fournisseur n'ont pas de compte.
+end note
+@enduml

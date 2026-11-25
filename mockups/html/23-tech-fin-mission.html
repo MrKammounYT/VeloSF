@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Fin de mission</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>body{margin:0}
+.app{font-family:Inter,sans-serif;font-size:13px;color:#111;background:#f7f7f7;min-height:900px;display:grid;grid-template-columns:248px minmax(0,1fr)}
+.app *{box-sizing:border-box}
+.mut{color:#6b6b66;font-size:12.5px}
+.sb{background:#fff;border-right:1px solid #ececec;padding:16px 12px;display:flex;flex-direction:column;gap:2px;min-height:900px}
+.brand{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:600;padding:0 6px 14px}
+.brand i{width:28px;height:28px;border-radius:8px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center}
+.brand .pn{margin-left:auto;color:#8a8a85;display:flex}
+.sec{display:flex;align-items:center;gap:8px;font-size:12px;color:#6b6b66;padding:14px 8px 6px}
+.nav{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;color:#333;text-decoration:none;font-size:13px;font-weight:500}
+.nav.on{background:#f1f1f0;color:#111}
+.nav .bd{margin-left:auto;font-size:11px;font-weight:600;padding:1px 7px;border-radius:8px;background:#e0ecff;color:#1d4ed8}
+.sp{flex:1}
+.up{border:1px solid #ececec;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.up b{font-size:15px;font-weight:600}
+.pf{display:flex;align-items:center;gap:10px;border-top:1px solid #ececec;padding:12px 4px 0}
+.av{width:34px;height:34px;border-radius:50%;background:#efefed;display:flex;align-items:center;justify-content:center;flex:none;color:#333}
+.pf b{display:block;font-size:12.5px;font-weight:600}
+.lo{margin-left:auto;width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#444;text-decoration:none;border:1px solid #ececec;background:#fff;flex:none}
+.mw{display:flex;flex-direction:column;min-width:0}
+.tb{height:56px;background:#fff;border-bottom:1px solid #ececec;display:flex;align-items:center;gap:10px;padding:0 24px}
+.crumb{display:flex;align-items:center;gap:8px;font-size:13px}
+.sr{display:flex;align-items:center;gap:8px;width:260px;height:34px;border:1px solid #e4e4e4;border-radius:8px;padding:0 10px;color:#6b6b66;background:#fff}
+.tbb{width:34px;height:34px;border:1px solid #e4e4e4;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;color:#333}
+.mn{display:flex;flex-direction:column;gap:20px;min-width:0;padding:28px 32px}
+.hd{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.hd h1{margin:0 0 4px;font-size:22px;font-weight:500;letter-spacing:-.3px}
+.dt{display:flex;align-items:center;gap:8px;height:36px;padding:0 12px;border:1px solid #e4e4e4;border-radius:8px;background:#fff;font-size:13px}
+.col{display:flex;flex-direction:column;gap:16px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.card{background:#fff;border:1px solid #ececec;border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:14px}
+.card h3{margin:0;font-size:15px;font-weight:500}
+.g2,.g3,.g4,.g21,.g12{display:grid;gap:16px;align-items:start}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.g21{grid-template-columns:minmax(0,2fr) minmax(0,1fr)}.g12{grid-template-columns:minmax(0,1fr) minmax(0,2fr)}
+.stat{background:#fff;border:1px solid #ececec;border-radius:14px;padding:6px;display:flex;flex-direction:column;gap:6px}
+.tile{background:#f6f6f5;border:1px solid #efefee;border-radius:10px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.tl{display:flex;align-items:center;gap:8px}
+.ib2{width:26px;height:26px;border-radius:7px;background:#fff;border:1px solid #e8e8e6;display:flex;align-items:center;justify-content:center;color:#333}
+.tile b{font-size:26px;font-weight:500;letter-spacing:-.5px;padding-left:2px}
+.cap{font-size:12px;padding:0 8px 4px;color:#6b6b66}.cap.up_{color:#15803d}.cap.dn{color:#b91c1c}
+.f{display:flex;flex-direction:column;gap:6px;font-size:12.5px;font-weight:500}
+.in{display:flex;align-items:center;height:40px;border-radius:8px;background:#fff;border:1px solid #e4e4e4;padding:0 12px;color:#111}
+.in input,.in select{flex:1;border:0;outline:0;background:none;font:13px Inter,sans-serif;color:#111;min-width:0;width:100%}
+textarea{border-radius:8px;border:1px solid #e4e4e4;background:#fff;padding:10px 12px;font:13px Inter,sans-serif;min-height:100px;resize:none}
+.btn{height:36px;padding:0 14px;border-radius:8px;border:1px solid #e4e4e4;background:#fff;color:#111;font:500 13px Inter,sans-serif;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;white-space:nowrap}
+.btn.p{background:#111;border-color:#111;color:#fff}.btn.g{background:#15803d;border-color:#15803d;color:#fff}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;color:#6b6b66;font-weight:500;font-size:12px;padding:9px 12px;background:#f4f4f3}
+th:first-child{border-radius:8px 0 0 8px}th:last-child{border-radius:0 8px 8px 0}
+td{padding:14px 12px;border-top:1px solid #efefee}
+tbody tr:first-child td{border-top:0}
+.chip{display:inline-block;font-size:11.5px;font-weight:500;padding:2px 8px;border-radius:6px;background:#f1f1f0;color:#444}
+.chip.ok{background:#e6f6ec;color:#15803d}.chip.warn{background:#fdf1de;color:#8a5206}.chip.bad{background:#fdecec;color:#b91c1c}
+.dots{display:flex;gap:4px;flex-wrap:wrap}
+.d{width:10px;height:10px;border-radius:50%;background:#dcdcd9;display:block}.d.f{background:#16a34a}.d.w{background:#e0892b}
+.bar{height:6px;border-radius:3px;background:#ececea;overflow:hidden}.bar i{display:block;height:6px;background:#16a34a}
+.map{height:240px;border-radius:10px;background:#ececea;overflow:hidden}
+.li{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:#f6f6f5;border:1px solid #efefee;font-size:13px}
+.li.on{background:#111;color:#fff;border-color:#111}
+.n{width:24px;height:24px;border-radius:50%;background:#111;color:#fff;font-weight:600;font-size:12px;display:flex;align-items:center;justify-content:center;flex:none}
+.ft{color:#6b6b66;font-size:12px}
+.steps{display:flex;gap:6px}.steps span{flex:1;height:4px;border-radius:2px;background:#e4e4e2}.steps .on{background:#111}
+.big{font-size:28px;font-weight:500;letter-spacing:-.5px}
+.sw{border-radius:16px;padding:22px;background:#111;color:#fff;display:flex;flex-direction:column;gap:28px;aspect-ratio:1.6;max-width:380px}
+.chk{display:flex;gap:10px;align-items:center;font-size:13px}.chk input{width:16px;height:16px;accent-color:#111}
+.sq{width:18px;height:18px;border-radius:5px;display:inline-block;vertical-align:middle;margin-right:8px}
+.tc{background:#fff;border:1px solid #ececec;border-radius:14px;padding:8px;display:flex;flex-direction:column;gap:10px}
+.tc .im{background:#f4f4f3;border-radius:10px;min-height:84px;position:relative;padding:36px 12px 12px}
+.tc .chip{position:absolute;top:10px;right:10px}
+.tc .bt{padding:0 6px 6px;display:flex;flex-direction:column;gap:2px}
+.tbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sr2{display:flex;align-items:center;gap:8px;height:34px;width:240px;border:1px solid #e4e4e4;border-radius:8px;padding:0 10px;color:#6b6b66;background:#fff;font-size:12.5px}
+.flt{display:flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid #e4e4e4;border-radius:8px;font-size:12.5px;background:#fff}
+.exp{margin-left:auto;height:34px;font-size:12.5px;gap:8px}
+.pgf{display:flex;justify-content:space-between;align-items:center;padding-top:2px}
+.pg{display:flex;gap:8px}
+.pg a{width:30px;height:30px;border:1px solid #e4e4e4;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:#444;text-decoration:none;background:#fff}
+.pg a.on{background:#111;color:#fff;border-color:#111}
+.nm{font-weight:500}
+.pc{font-weight:500}.pc.ok{color:#15803d}.pc.warn{color:#b45309}.pc.bad{color:#b91c1c}
+.clk{display:inline-flex;align-items:center;gap:6px;color:#444}
+.acts{display:flex;align-items:center;gap:14px;white-space:nowrap}
+.al{color:#555;text-decoration:none;font-size:12.5px}
+.mo{width:26px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:#444;text-decoration:none}</style></head><body>
+
+<div class="app"><aside class="sb"><div class="brand"><i><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="16.5" r="3.5"/><circle cx="18.5" cy="16.5" r="3.5"/><path d="M5.5 16.5L9 8h5l4.5 8.5M9 8L7.5 6H6M14 8l-3 8.5H5.5"/></svg></i>VéloSf<span class="pn"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></span></div><div class="sec"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke-dasharray="2 3.5"/></svg>Maintenance</div><a href="#" class="nav "><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4h6v3H9zM9 14l2 2 4-4"/></svg>Contrôle quotidien</a><a href="#" class="nav "><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></svg>Réclamation</a><div class="sec"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8" stroke-dasharray="2 3.5"/></svg>Répartition</div><a href="#" class="nav "><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 21V4M5 4h12l-2 4 2 4H5"/></svg>Ma mission</a><a href="#" class="nav on"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>Fin de mission</a><span class="sp"></span>
+<div class="up"><span class="mut">Vélos en station</span><b>50 / 84</b><div class="bar"><i style="width:60%"></i></div></div>
+<div class="pf"><span class="av"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg></span><div><b>Mon compte</b><span class="mut">Technicien</span></div><a href="#" class="lo" aria-label="Se déconnecter"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H5v16h5M15 8l4 4-4 4M19 12H9"/></svg></a></div></aside>
+<div class="mw"><div class="tb"><span class="crumb"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg><span class="mut">Technicien</span><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg><b style="font-weight:500">Fin de mission</b></span><span class="sp"></span><span class="sr"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>Rechercher…</span><a href="#" class="tbb" aria-label="Notifications"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 21h4"/></svg></a></div>
+<main class="mn"><header class="hd"><div><h1>Fin de mission</h1><span class="mut">Récapitulatif avant clôture.</span></div><span class="sp"></span><div class="btns"><span class="dt"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>25 novembre 2026</span></div></header><div class="g3"><div class="stat"><div class="tile"><div class="tl"><span class="ib2"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></span><span class="mut">Vélos déplacés</span></div><b>5</b></div></div><div class="stat"><div class="tile"><div class="tl"><span class="ib2"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></span><span class="mut">Vélos en panne collectés</span></div><b>1</b></div></div><div class="stat"><div class="tile"><div class="tl"><span class="ib2"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg></span><span class="mut">Étapes terminées</span></div><b>5/5</b></div></div></div><section class="card "><h3>Clôture</h3><label class="f">Commentaire<textarea placeholder="Remarques éventuelles"></textarea></label><div class="btns"><a href="#" class="btn g">Terminer la mission</a></div></section>
+<span class="ft">Données d’exemple pour la maquette.</span></main></div></div>
+</body></html>

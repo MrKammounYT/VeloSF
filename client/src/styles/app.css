@@ -1,0 +1,130 @@
+/* Compléments au CSS de référence (design/app-shell-and-components.css) : états interactifs,
+   champs réels dans la barre d'outils, messages, dialogues et écran de connexion aligné sur le style des autres écrans. */
+:root { color-scheme: light; }
+body { background: var(--bg); }
+.app { min-height: 100vh; background: linear-gradient(90deg, #fff 0 247px, #ececec 247px 248px, #f7f7f7 248px); }
+.sb { position: sticky; top: 0; height: 100vh; min-height: 0; overflow-y: auto; }
+.sb nav, .sb nav > div { display: flex; flex-direction: column; gap: 2px; }
+.nav:hover { background: #f6f6f5; }
+.nav.on:hover { background: #f1f1f0; }
+.nav:focus-visible, .btn:focus-visible, .al:focus-visible, .lo:focus-visible, .tbb:focus-visible, .mo:focus-visible, .pg button:focus-visible, .li:focus-visible {
+  outline: 2px solid #111; outline-offset: 2px;
+}
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+.lo, .tbb { cursor: pointer; padding: 0; }
+.lo:hover, .tbb:hover, .mo:hover { background: #f4f4f3; }
+.tbb { position: relative; }
+.pastille { position: absolute; top: 6px; right: 7px; width: 7px; height: 7px; border-radius: 50%; background: #1d4ed8; border: 1.5px solid #fff; }
+
+/* Recherche réelle dans la barre du haut et la barre d'outils */
+.sr input, .sr2 input { flex: 1; border: 0; outline: 0; background: none; font: 12.5px Inter, sans-serif; color: #111; min-width: 0; }
+.sr:focus-within, .sr2:focus-within, .in:focus-within, .flt:focus-within, textarea:focus { border-color: #111; outline: 0; }
+.flt { position: relative; padding: 0 10px 0 12px; }
+.flt select { appearance: none; border: 0; outline: 0; background: none; font: 12.5px Inter, sans-serif; color: #111; padding-right: 4px; cursor: pointer; }
+.in select { appearance: none; cursor: pointer; }
+.in { gap: 8px; }
+.in input:disabled, .in input[readonly] { color: #6b6b66; }
+.in.ro { background: #f6f6f5; }
+
+/* Boutons */
+.btn { cursor: pointer; gap: 6px; }
+.btn:hover { background: #f6f6f5; }
+.btn.p:hover { background: #2a2a2a; }
+.btn.g:hover { background: #166534; }
+.btn:disabled, .btn[aria-disabled='true'] { opacity: .45; pointer-events: none; }
+.btn.danger { color: #b91c1c; }
+.al { background: none; border: 0; padding: 0; font: 12.5px Inter, sans-serif; cursor: pointer; }
+.al:hover { color: #111; text-decoration: underline; }
+.al:disabled { color: #b5b5b0; text-decoration: none; }
+.al.fort { color: #111; font-weight: 500; }
+.mo { border: 0; background: none; cursor: pointer; padding: 0; }
+.pg button { width: 30px; height: 30px; border: 1px solid #e4e4e4; border-radius: 8px; display: flex; align-items: center; justify-content: center; font: 12.5px Inter, sans-serif; color: #444; background: #fff; }
+.pg button.on { background: #111; color: #fff; border-color: #111; }
+.pg button:disabled { opacity: .4; }
+
+/* Tableaux */
+tbody tr:hover td { background: #fafaf9; }
+tr.sel td { background: #f4f4f3; }
+td.vide { text-align: center; color: #6b6b66; padding: 28px 12px; }
+.cal td { vertical-align: top; height: 52px; }
+.cal td.auj, .cal th.auj { background: #f6f6f5; }
+.cal .chip { display: block; margin-bottom: 4px; white-space: nowrap; }
+
+/* Menus déroulants */
+.menu-plus { position: relative; display: inline-flex; }
+.menu-liste { position: absolute; top: calc(100% + 4px); right: 0; z-index: 20; min-width: 190px; background: #fff; border: 1px solid #ececec; border-radius: 10px; box-shadow: 0 8px 24px rgba(0, 0, 0, .08); padding: 4px; display: flex; flex-direction: column; }
+.menu-liste button, .menu-liste a { text-align: left; border: 0; background: none; padding: 8px 10px; border-radius: 6px; font: 13px Inter, sans-serif; color: #111; text-decoration: none; }
+.menu-liste button:hover, .menu-liste a:hover { background: #f4f4f3; }
+.menu-liste button.danger { color: #b91c1c; }
+.menu-liste button:disabled { color: #b5b5b0; background: none; }
+.menu-liste .vide { padding: 8px 10px; }
+
+/* Messages */
+.alerte { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 10px; font-size: 13px; line-height: 1.45; }
+.alerte > span { flex: 1; }
+.alerte.ok { background: var(--ok-bg); color: var(--ok); }
+.alerte.warn { background: var(--warn-bg); color: var(--warn); }
+.alerte.bad { background: var(--bad-bg); color: var(--bad); }
+.alerte.info { background: #f4f4f3; color: #333; }
+.alerte-x { border: 0; background: none; color: inherit; padding: 2px; display: flex; }
+.f.err .in, .f.err textarea { border-color: #b91c1c; }
+.msg-err { color: #b91c1c; font-weight: 400; font-size: 12px; }
+.aide { font-weight: 400; font-size: 12px; }
+
+/* Listes */
+button.li { width: 100%; text-align: left; font: 13px Inter, sans-serif; color: inherit; cursor: pointer; }
+button.li:hover:not(.on) { background: #f1f1f0; }
+.li.fait { color: #6b6b66; }
+.li.fait .n { background: #15803d; }
+.li.saute .n { background: #b45309; }
+.li .chip { margin-left: auto; }
+.li .sp { flex: 1; }
+.li.on .mut { color: #c9c9c4; }
+
+/* Éditeur d'étapes (écran 10) */
+.etape { display: grid; grid-template-columns: 24px minmax(0, 1fr) 72px 20px; grid-template-areas: 'n type nb ordre' '. station station station'; gap: 8px; align-items: center; padding: 8px 10px; border-radius: 10px; background: #f6f6f5; border: 1px solid #efefee; }
+.etape .in { height: 34px; padding: 0 8px; }
+.etape .e-type { grid-area: type; } .etape .e-station { grid-area: station; } .etape .e-nb { grid-area: nb; } .etape .ordre { grid-area: ordre; } .etape > .n { grid-area: n; }
+.flt.large { width: 100%; } .flt.large select { flex: 1; min-width: 0; text-overflow: ellipsis; }
+.etape .ordre { display: flex; flex-direction: column; }
+.etape .ordre button { border: 0; background: none; padding: 0; height: 15px; display: flex; color: #6b6b66; }
+.etape .ordre button:disabled { opacity: .3; }
+
+/* Carte */
+.map-clic svg { cursor: crosshair; }
+
+/* Dialogue */
+.voile { position: fixed; inset: 0; background: rgba(17, 17, 17, .35); display: flex; align-items: center; justify-content: center; z-index: 50; }
+.dialogue { width: min(460px, 92vw); box-shadow: 0 20px 50px rgba(0, 0, 0, .18); }
+
+/* Carte courte durée (écran 18) */
+.sw .big { color: #fff; }
+
+/* Écran 01 – connexion, aligné sur le style des écrans 02 à 23 (fond clair, cartes blanches) */
+.cx { font-family: Inter, sans-serif; font-size: 13px; color: #111; background: #f7f7f7; min-height: 100vh; box-sizing: border-box; padding: 24px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 24px; }
+.cx * { box-sizing: border-box; }
+.cx-hero { background: #fff; border: 1px solid #ececec; border-radius: 20px; padding: 40px; display: flex; flex-direction: column; gap: 24px; }
+.cx-hero .brand { font-size: 20px; padding: 0; }
+.cx-hero .brand i { width: 36px; height: 36px; border-radius: 10px; }
+.cx-hero h1 { margin: 0; font-size: 38px; font-weight: 500; line-height: 1.12; letter-spacing: -1.2px; max-width: 520px; }
+.cx-hero p { margin: 0; color: #6b6b66; font-size: 15px; max-width: 480px; line-height: 1.5; }
+.cx-board { background: #f6f6f5; border: 1px solid #efefee; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.cx-board .d { width: 12px; height: 12px; }
+.cx-side { display: flex; align-items: center; justify-content: center; padding: 24px; }
+.cx-card { background: #fff; border: 1px solid #ececec; border-radius: 20px; padding: 32px; width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 18px; }
+.cx-card h2 { margin: 0 0 4px; font-size: 24px; font-weight: 500; letter-spacing: -.5px; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); background: #f4f4f3; border-radius: 10px; padding: 4px; gap: 4px; }
+.seg button { height: 38px; border: 0; border-radius: 8px; background: none; font: 500 13px Inter, sans-serif; color: #444; }
+.seg button.on { background: #111; color: #fff; }
+.cx-card .in { height: 44px; color: #6b6b66; }
+.cx-card .btn.p { height: 44px; font-size: 14px; }
+.cx-alt { display: flex; align-items: center; gap: 12px; background: #f6f6f5; border: 1px solid #efefee; border-radius: 12px; padding: 14px 16px; text-decoration: none; color: #111; }
+.cx-alt:hover { background: #f1f1f0; }
+.cx-alt b { display: block; font-weight: 600; }
+.cx-lien { align-self: flex-start; border: 0; background: none; padding: 0; color: #111; font: 500 12.5px Inter, sans-serif; text-decoration: underline; }
+.demo { font-size: 12px; color: #6b6b66; line-height: 1.6; border-top: 1px dashed #e4e4e4; padding-top: 12px; }
+.demo code { background: #f4f4f3; padding: 1px 5px; border-radius: 4px; font-size: 11.5px; }
+@media (max-width: 900px) { .cx { grid-template-columns: 1fr; } }
+
+.chargement { color: #6b6b66; padding: 40px 0; text-align: center; }

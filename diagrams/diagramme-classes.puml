@@ -1,0 +1,206 @@
+@startuml VeloSf_Diagramme_de_classes
+skinparam classAttributeIconSize 0
+skinparam shadowing false
+skinparam nodesep 30
+skinparam ranksep 45
+skinparam packageStyle rectangle
+skinparam dpi 130
+hide empty members
+
+' ---------- Énumérations (valeurs marquées (H) = hypothèses) ----------
+
+package "Enumerations" {
+enum TypeVelo {
+  VILLE
+  VTT
+  ELECTRIQUE
+}
+enum EtatVelo {
+  DISPONIBLE
+  LOUE
+  EN_REPARATION
+  EN_CAMION
+}
+enum StatutReclamation {
+  A_PLANIFIER
+  PLANIFIEE
+  TRAITEE
+}
+enum StatutLocation {
+  EN_COURS
+  TERMINEE
+}
+enum StatutMission {
+  BROUILLON
+  ENVOYE
+  EN_COURS
+  TERMINE
+}
+enum TypeEtape {
+  PRISE
+  DEPOT
+  COLLECTE
+}
+}
+
+' ---------- Utilisateurs ----------
+abstract class Utilisateur {
+  - id : int
+  - identifiant : String
+  - codeSecretHash : String
+  - nom : String
+  - prenom : String
+  + authentifier(code : String) : boolean
+}
+class Responsable {
+  + gererStations()
+  + acheterVelo()
+  + gererFournisseurs()
+  + planifierReparation()
+  + preparerItineraire()
+  + donnerOrdreMission()
+}
+class Abonne {
+  - numeroCarte : String
+  + louerVelo(velo : Velo) : Location
+  + restituerVelo(loc : Location, station : Station)
+}
+class Technicien {
+  + controlerVelos()
+  + enregistrerReclamation(velo : Velo, diagnostic : String)
+  + executerMission(ordre : OrdreMission)
+}
+class UtilisateurOccasionnel {
+  - id : int
+  - nom : String
+  - prenom : String
+  - pieceIdentite : String
+  + louerVelo(velo : Velo) : Location
+  + restituerVelo(loc : Location, station : Station)
+}
+class CarteTemporaire {
+  - numero : String
+  - valideJusquA : DateTime
+  - restituee : boolean
+  + estValide() : boolean
+}
+
+Utilisateur <|-- Responsable
+Utilisateur <|-- Abonne
+Utilisateur <|-- Technicien
+
+' ---------- Parc ----------
+class Station {
+  - id : int
+  - nom : String
+  - adresse : String
+  - capacite : int
+  - nbVelos : int
+  + placesLibres() : int
+  + estPleine() : boolean
+  + estVide() : boolean
+}
+class Fournisseur {
+  - id : int
+  - nom : String
+  - adresse : String
+  - telephone : String
+  - email : String
+}
+class Velo {
+  - id : int
+  - numeroSerie : String
+  - couleur : String
+  - type : TypeVelo
+  - etat : EtatVelo
+  - dateAchat : Date
+  + estDisponible() : boolean
+}
+
+Fournisseur "1" -- "0..*" Velo : fournit
+Station "0..1" o-- "0..*" Velo : contient
+
+' ---------- Location ----------
+class Location {
+  - id : int
+  - debut : DateTime
+  - dureePrevueMin : int
+  - fin : DateTime
+  - frais : decimal
+  - caution : decimal
+  - cautionRemboursee : boolean
+  - statut : StatutLocation
+  + calculerFrais() : decimal
+  + cloturer()
+}
+Location "0..*" -- "1" Velo : porte sur
+Location "0..*" -- "0..1" Abonne : effectuee par {xor}
+Location "0..*" -- "0..1" UtilisateurOccasionnel : effectuee par
+UtilisateurOccasionnel "1" -- "0..*" CarteTemporaire : recoit
+Location "0..1" -- "0..1" CarteTemporaire : utilise
+Location "0..*" -- "1" Station : depart
+Location "0..*" -- "0..1" Station : destination
+Location "0..*" -- "0..1" Station : arrivee
+
+' ---------- Maintenance ----------
+class Reclamation {
+  - id : int
+  - diagnostic : String
+  - date : Date
+  - statut : StatutReclamation
+}
+class Reparation {
+  - id : int
+  - datePrevue : Date
+}
+Technicien "1" -- "0..*" Reclamation : depose
+Velo "1" -- "0..*" Reclamation : concerne
+Reclamation "1" -- "0..1" Reparation : donne lieu a
+Responsable "1" -- "0..*" Reparation : planifie
+Reparation "0..*" -- "0..1" Technicien : realisee par
+
+' ---------- Redistribution ----------
+class Camion {
+  - id : int
+  - nom : String
+}
+class Itineraire {
+  - id : int
+  - dateCreation : DateTime
+}
+class EtapeItineraire {
+  - ordre : int
+  - type : TypeEtape
+  - nbVelos : int
+}
+class OrdreMission {
+  - id : int
+  - dateHeure : DateTime
+  - consignes : String
+  - statut : StatutMission
+  + envoyer()
+  + cloturer()
+}
+class ExecutionEtape {
+  - fait : boolean
+  - commentaire : String
+}
+Responsable "1" -- "0..*" Itineraire : prepare
+Itineraire "1" *-- "1..*" EtapeItineraire
+EtapeItineraire "0..*" -- "0..1" Station : a
+Responsable "1" -- "0..*" OrdreMission : donne
+OrdreMission "0..*" -- "1" Itineraire : suit
+OrdreMission "0..*" -- "1" Technicien : confiee a
+OrdreMission "0..*" -- "0..1" Camion : utilise
+OrdreMission "1" *-- "0..*" ExecutionEtape
+ExecutionEtape "0..*" -- "1" EtapeItineraire : concerne
+
+note bottom of Station
+  Hypotheses a confirmer : (H1) nom de station,
+  (H3) types de velo, (H7) etats et statuts,
+  (H12) camion, (H13) statuts de mission.
+end note
+note "Une location est effectuee soit par un Abonne,\nsoit par un Utilisateur occasionnel (xor)." as N1
+Location .. N1
+Station -[hidden]- Camion
+@enduml

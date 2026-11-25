@@ -1,0 +1,9 @@
+:root{
+  --font:Inter,system-ui,sans-serif; --fs:13px; --fs-sm:12.5px; --fs-h1:22px;
+  --bg:#f7f7f7; --card:#fff; --border:#ececec; --border-input:#e4e4e4;
+  --tile:#f6f6f5; --thead:#f4f4f3;
+  --text:#111; --muted:#6b6b66; --primary:#111; --on-primary:#fff;
+  --ok:#15803d; --ok-bg:#e6f6ec; --warn:#8a5206; --warn-bg:#fdf1de; --bad:#b91c1c; --bad-bg:#fdecec;
+  --badge:#1d4ed8; --badge-bg:#e0ecff; --dot-full:#16a34a; --dot-warn:#e0892b; --dot-empty:#dcdcd9;
+  --r-card:14px; --r-ctl:8px; --r-chip:6px; --sidebar-w:248px;
+}
